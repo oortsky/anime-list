@@ -21,7 +21,14 @@ const Card = ({ id, title, image, rating }) => {
           {title}
         </h2>
         <div className="card-actions">
-          <div class="badge badge-warning text-white badge-xl">{rating}</div>
+        {
+          rating
+          ?
+          <div className="badge badge-warning text-white badge-xl">{rating}</div>
+          :
+          <div className="badge badge-warning text-white badge-xl">NAN</div>
+        }
+          
         </div>
       </div>
     </Link>

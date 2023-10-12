@@ -1,4 +1,5 @@
 import Link from "next/link";
+import InputSearch from "./InputSearch";
 
 const Navbar = () => {
   return (
@@ -13,11 +14,7 @@ const Navbar = () => {
       </div>
       <div className="flex-none">
         <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered input-sm font-mono w-36 md:w-auto"
-          />
+          <InputSearch />
         </div>
       </div>
     </header>

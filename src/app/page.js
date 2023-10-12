@@ -1,38 +1,28 @@
-import Navbar from "@/components/Navbar";
-import Card from "@/components/Card";
-import Link from "next/link";
+import Header from "@/components/AnimeList/Header";
+import AnimeList from "@/components/AnimeList";
 
-const Home = async () => {
-  const response = await fetch(
+const Page = async () => {
+  const responseOne = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`
   );
-  const anime = await response.json();
+  const topAnime = await responseOne.json();
+  const responseTwo = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/seasons/now?limit=8`
+  );
+  const latestAnime = await responseTwo.json();
 
   return (
-    <div className="pt-20">
-      <Navbar />
-      <div className="w-full p-4 flex justify-between items-center">
-        <h1 className="text-lg font-bold font-mono">Popular Anime</h1>
-        <Link href="/popular" className="link font-mono text-sm link-primary">
-          More
-        </Link>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
-        {anime.data.map((data) => {
-          return (
-            <div key={data.mal_id}>
-              <Card
-                id={data.mal_id}
-                title={data.title}
-                image={data.images.webp.image_url}
-                rating={data.score}
-              />
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <>
+      <section className="pt-20 pb-6">
+        <Header title="Popular Anime" linkHref="popular" linkTitle="More" />
+        <AnimeList api={topAnime} />
+      </section>
+      <section className="py-6">
+        <Header title="Latest Anime" linkHref="latest" linkTitle="More" />
+        <AnimeList api={latestAnime} />
+      </section>
+    </>
   );
 };
 
-export default Home;
+export default Page;
