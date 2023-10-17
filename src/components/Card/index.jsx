@@ -5,7 +5,7 @@ const Card = ({ id, title, image, rating }) => {
   return (
     <Link
       href={`/${id}`}
-      className="card card-compact w-full h-full bg-base-100 shadow-xl cursor-pointer transition-all ease-in-out duration-300 hover:scale-[103%]"
+      className="card card-compact w-full h-full bg-base-100 shadow-lg cursor-pointer transition-all ease-in-out duration-300 hover:scale-[103%] hover:text-primary"
     >
       <figure>
         <Image
@@ -21,14 +21,15 @@ const Card = ({ id, title, image, rating }) => {
           {title}
         </h2>
         <div className="card-actions">
-        {
-          rating
-          ?
-          <div className="badge badge-warning text-white badge-xl">{rating}</div>
-          :
-          <div className="badge badge-warning text-white badge-xl">NAN</div>
-        }
-          
+          {rating ? (
+            <div className="badge badge-warning text-base-100 badge-xl">
+              {rating}
+            </div>
+          ) : (
+            <div className="badge badge-warning text-base-100 badge-xl">
+              NAN
+            </div>
+          )}
         </div>
       </div>
     </Link>

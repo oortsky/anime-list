@@ -9,17 +9,16 @@ const InputSearch = () => {
   const router = useRouter();
 
   const handleSearch = (event) => {
-    event.preventDefault();
     const keyword = searchRef.current.value;
-    if (keyword) {
-      router.push(`/search/${keyword}`);
-    }
-    
-  };
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      handleSearch(event);
+    if (!keyword) return;
+
+    if (event.key === "Enter" || event.type === "click") {
+      event.preventDefault();
+      router.push(`/search/${keyword}`);
+      setTimeout(function () {
+        searchRef.current.value = "";
+      }, 1000);
     }
   };
 
@@ -27,11 +26,11 @@ const InputSearch = () => {
     <div className="relative">
       <form onSubmit={handleSearch}>
         <input
-          type="text"
+          type="search"
           placeholder="Search..."
           className="input input-bordered input-sm font-mono w-36 md:w-auto"
           ref={searchRef}
-          onKeyPress={handleKeyPress}
+          onKeyPress={handleSearch}
         />
         <button
           className="absolute top-1.5 end-1.5 cursor-pointer"
