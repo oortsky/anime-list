@@ -28,12 +28,12 @@ const InputSearch = () => {
         <input
           type="search"
           placeholder="Search..."
-          className="input input-bordered input-sm font-mono w-36 md:w-auto"
+          className="input input-bordered input-sm font-mono w-36 pr-8 md:w-auto"
           ref={searchRef}
           onKeyPress={handleSearch}
         />
         <button
-          className="absolute top-1.5 end-1.5 cursor-pointer"
+          className="absolute top-1.5 end-2 cursor-pointer"
           onClick={handleSearch}
         >
           <MagnifyingGlass size={20} />
