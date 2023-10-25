@@ -4,8 +4,8 @@ import Link from "next/link";
 const Card = ({ id, title, image, rating }) => {
   return (
     <Link
-      href={`/${id}`}
-      className="card card-compact w-full h-full bg-base-100 shadow-lg cursor-pointer transition-all ease-in-out duration-300 hover:scale-[103%] hover:text-primary"
+      href={`/anime/${id}`}
+      className="card card-compact w-full h-full bg-neutral shadow-lg cursor-pointer transition-all ease-in-out duration-300 hover:scale-[103%] hover:text-primary"
     >
       <figure>
         <Image
@@ -13,6 +13,7 @@ const Card = ({ id, title, image, rating }) => {
           alt={title}
           width={400}
           height={600}
+          priority={true}
           className="w-full max-h-64 object-cover"
         />
       </figure>
