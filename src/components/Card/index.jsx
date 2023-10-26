@@ -28,7 +28,7 @@ const Card = ({ id, title, image, rating }) => {
             </div>
           ) : (
             <div className="badge badge-warning text-base-100 badge-xl">
-              NAN
+              -
             </div>
           )}
         </div>

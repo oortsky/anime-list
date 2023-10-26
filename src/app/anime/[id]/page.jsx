@@ -8,42 +8,44 @@ const Page = async ({ params: { id } }) => {
   return (
     <section className="pt-20 pb-6 px-4">
       <h1 className="text-2xl font-black mb-3">
-        {anime.data.title} {"•"} {anime.data.year}
+        {anime.data.title} {"•"} {anime.data.year ? anime.data.year : "-"}
       </h1>
       <div className="w-full overflow-x-auto">
         <div className="stats bg-neutral shadow">
           <div className="stat place-items-center">
             <div className="stat-title">Rank</div>
             <div className="stat-value text-primary">
-              {anime.data.rank ? anime.data.rank : "NAN"}
+              {anime.data.rank ? anime.data.rank : "-"}
             </div>
           </div>
 
           <div className="stat place-items-center">
             <div className="stat-title">Score</div>
             <div className="stat-value text-secondary">
-              {anime.data.score ? anime.data.score : "NAN"}
+              {anime.data.score ? anime.data.score : "-"}
             </div>
           </div>
 
           <div className="stat place-items-center">
             <div className="stat-title">Favorites</div>
-            <div className="stat-value text-accent">{anime.data.favorites}</div>
+            <div className="stat-value text-accent">
+              {anime.data.favorites ? anime.data.favorites : "-"}
+            </div>
           </div>
 
           <div className="stat place-items-center">
             <div className="stat-title">Episodes</div>
-            <div className="stat-value">{anime.data.episodes}</div>
+            <div className="stat-value">{anime.data.episodes ? anime.data.episodes : "-"}</div>
           </div>
 
           <div className="stat place-items-center">
             <div className="stat-title">Duration</div>
-            <div className="stat-value">{anime.data.duration}</div>
+            <div className="stat-value">{anime.data.duration ? anime.data.duration : "-"}</div>
           </div>
 
           <div className="stat place-items-center">
             <div className="stat-title">Status</div>
-            <div className="stat-value">{anime.data.status}</div>
+            <div className="stat-value">{anime.data.status ? anime.data.status : "-"}</div>
           </div>
         </div>
       </div>

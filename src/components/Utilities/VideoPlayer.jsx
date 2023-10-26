@@ -2,6 +2,10 @@
 
 import Youtube from "react-youtube";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const VideoPlayer = ({ videoId }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -16,7 +20,23 @@ const VideoPlayer = ({ videoId }) => {
   };
 
   const onError = error => {
-    alert("Sorry! We can't afford this video.");
+    let timerInterval;
+    MySwal.fire({
+      position: "top-end",
+      title: "Oops...",
+      html: "Sorry! We can't afford this video.",
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: true,
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then(result => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === MySwal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
   };
 
   const opts = {
