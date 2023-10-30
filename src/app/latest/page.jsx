@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import HeaderMenu from "@/components/Utilities/HeaderMenu";
 import Pagination from "@/components/Utilities/Pagination";
 import AnimeList from "@/components/AnimeList";
-import { getAnimeResponse } from "../services/api-services";
+import { getAnimeResponse } from "@/services/api-services";
 
 const Page = async () => {
   const [page, setPage] = useState(1);

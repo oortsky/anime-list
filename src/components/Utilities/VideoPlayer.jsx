@@ -9,6 +9,7 @@ const MySwal = withReactContent(Swal);
 
 const VideoPlayer = ({ videoId }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [showXBtn, setShowXBtn] = useState(false);
 
   const handleVideoPlayer = () => {
     setIsOpen(prevState => !prevState);
@@ -17,6 +18,7 @@ const VideoPlayer = ({ videoId }) => {
   const onReady = event => {
     const player = event.target;
     player.pauseVideo();
+    setShowXBtn(true);
   };
 
   const onError = error => {
@@ -24,17 +26,12 @@ const VideoPlayer = ({ videoId }) => {
     MySwal.fire({
       position: "top-end",
       title: "Oops...",
-      html: "Sorry! We can't afford this video.",
+      html: "Sorry! Video is broken, please try another.",
       showConfirmButton: false,
-      timer: 4000,
+      timer: 4500,
       timerProgressBar: true,
       willClose: () => {
         clearInterval(timerInterval);
-      }
-    }).then(result => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === MySwal.DismissReason.timer) {
-        console.log("I was closed by the timer");
       }
     });
   };
@@ -49,25 +46,27 @@ const VideoPlayer = ({ videoId }) => {
       <div className="fixed bottom-4 right-4">
         <div className="indicator">
           <div className="indicator-item indicator-start">
-            <button
-              onClick={handleVideoPlayer}
-              className="btn btn-warning btn-circle"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            {showXBtn ? (
+              <button
+                onClick={handleVideoPlayer}
+                className="btn btn-warning btn-circle"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            ) : null}
           </div>
           <div className="rounded-lg border-2 border-warning overflow-hidden shadow-2xl shadow-black">
             <Youtube

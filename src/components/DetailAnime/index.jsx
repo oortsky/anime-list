@@ -10,7 +10,7 @@ const DetailAnime = () => {
             src="https://placehold.co/400x600/png"
             width={300}
             height={500}
-            className="max-w-sm rounded-lg shadow-2xl"
+            className="w-[300px] h-[500px] max-w-sm rounded-lg shadow-2xl"
           />
           <div>
             <h1 className="text-5xl font-bold">Box Office News!</h1>

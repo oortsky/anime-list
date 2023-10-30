@@ -1,4 +1,4 @@
-import { getAnimeResponse } from "../../services/api-services";
+import { getAnimeResponse } from "@/services/api-services";
 import Image from "next/image";
 import VideoPlayer from "@/components/Utilities/VideoPlayer";
 
@@ -35,17 +35,23 @@ const Page = async ({ params: { id } }) => {
 
           <div className="stat place-items-center">
             <div className="stat-title">Episodes</div>
-            <div className="stat-value">{anime.data.episodes ? anime.data.episodes : "-"}</div>
+            <div className="stat-value">
+              {anime.data.episodes ? anime.data.episodes : "-"}
+            </div>
           </div>
 
           <div className="stat place-items-center">
             <div className="stat-title">Duration</div>
-            <div className="stat-value">{anime.data.duration ? anime.data.duration : "-"}</div>
+            <div className="stat-value">
+              {anime.data.duration ? anime.data.duration : "-"}
+            </div>
           </div>
 
           <div className="stat place-items-center">
             <div className="stat-title">Status</div>
-            <div className="stat-value">{anime.data.status ? anime.data.status : "-"}</div>
+            <div className="stat-value">
+              {anime.data.status ? anime.data.status : "-"}
+            </div>
           </div>
         </div>
       </div>

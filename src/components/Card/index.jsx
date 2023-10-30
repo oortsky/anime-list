@@ -26,11 +26,7 @@ const Card = ({ id, title, image, rating }) => {
             <div className="badge badge-warning text-base-100 badge-xl">
               {rating}
             </div>
-          ) : (
-            <div className="badge badge-warning text-base-100 badge-xl">
-              -
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
     </Link>
