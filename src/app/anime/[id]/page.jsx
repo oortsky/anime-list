@@ -1,10 +1,12 @@
 import { getAnimeResponse } from "@/services/api-services";
 import Image from "next/image";
 import VideoPlayer from "@/components/Utilities/VideoPlayer";
+import ReviewCard from "@/components/ReviewCard";
 
 const Page = async ({ params: { id } }) => {
   const anime = await getAnimeResponse(`anime/${id}`);
-
+  const reviews = await getAnimeResponse(`anime/${id}/reviews`);
+  
   return (
     <section className="pt-20 pb-6 px-4">
       <h1 className="text-2xl font-black mb-3">
@@ -68,6 +70,29 @@ const Page = async ({ params: { id } }) => {
           <h1 className="text-lg font-bold">Synopsis</h1>
           <p className="py-2">{anime.data.synopsis}</p>
         </div>
+      </div>
+      <div className="divider"></div>
+      <h1 className="text-2xl font-black mb-3">Reviews</h1>
+      {reviews.data.length ? null : (
+        <div className="w-full flex justify-center">
+          <h3>– No Reviews –</h3>
+        </div>
+      )}
+      <div className="grid grid-cols-1 gap-2 py-2 md:grid-cols-3 overflow-x-hidden">
+        {reviews.data.map(review => {
+          return (
+            <ReviewCard
+              image={review.user.images.webp.image_url}
+              username={review.user.username}
+              date={review.date}
+              review={review.review}
+              user_url={review.user.url}
+              review_url={review.url}
+              score={review.score}
+              is_spoiler={review.is_spoiler}
+            />
+          );
+        })}
       </div>
       <div>
         <VideoPlayer videoId={anime.data.trailer.youtube_id} />
