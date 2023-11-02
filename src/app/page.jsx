@@ -2,7 +2,8 @@ import Header from "@/components/AnimeList/Header";
 import AnimeList from "@/components/AnimeList";
 import {
   getAnimeResponse,
-  getNestedAnimeResponses
+  getNestedAnimeResponses,
+  reproduce
 } from "@/services/api-services";
 
 const Page = async () => {
@@ -12,28 +13,7 @@ const Page = async () => {
     "recommendations/anime",
     "entry"
   );
-
-  function generateRandomNumbersWithGap() {
-    const min = 1;
-    const max = recommendedAnime.length;
-    const gap = 8;
-
-    let firstNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-
-    let secondNumber = firstNumber + gap;
-    if (secondNumber > max) {
-      secondNumber = max;
-      firstNumber = max - gap;
-    }
-
-    return [firstNumber, secondNumber];
-  }
-
-  const [firstNumber, secondNumber] = generateRandomNumbersWithGap();
-
-  recommendedAnime = {
-    data: recommendedAnime.slice(firstNumber, secondNumber)
-  };
+  recommendedAnime = reproduce(recommendedAnime, 8);
 
   return (
     <>
