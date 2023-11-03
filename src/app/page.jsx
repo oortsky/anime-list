@@ -1,5 +1,3 @@
-"use client"
-
 import Header from "@/components/AnimeList/Header";
 import AnimeList from "@/components/AnimeList";
 import {
@@ -7,7 +5,6 @@ import {
   getNestedAnimeResponses,
   reproduce
 } from "@/services/api-services";
-import { useEffect } from "react";
 
 const Page = async () => {
   const topAnime = await getAnimeResponse("top/anime", "limit=8");
@@ -16,10 +13,7 @@ const Page = async () => {
     "recommendations/anime",
     "entry"
   );
-
-  useEffect(() => {
-    recommendedAnime = reproduce(recommendedAnime, 8);
-  }, []);
+  recommendedAnime = reproduce(recommendedAnime, 8);
 
   return (
     <>
