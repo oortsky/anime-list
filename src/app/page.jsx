@@ -1,3 +1,5 @@
+"use client"
+
 import Header from "@/components/AnimeList/Header";
 import AnimeList from "@/components/AnimeList";
 import {
