@@ -5,6 +5,7 @@ import {
   getNestedAnimeResponses,
   reproduce
 } from "@/services/api-services";
+import { useEffect } from "react";
 
 const Page = async () => {
   const topAnime = await getAnimeResponse("top/anime", "limit=8");
@@ -13,7 +14,10 @@ const Page = async () => {
     "recommendations/anime",
     "entry"
   );
-  recommendedAnime = reproduce(recommendedAnime, 8);
+
+  useEffect(() => {
+    recommendedAnime = reproduce(recommendedAnime, 8);
+  }, []);
 
   return (
     <>
